@@ -1,0 +1,55 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-display: 'Fredoka', sans-serif;
+  --font-body: 'Nunito', sans-serif;
+  
+  --color-primary: #F97316;
+  --color-primary-light: #FB923C;
+  --color-cta: #2563EB;
+  --color-background: #FFF7ED;
+  --color-text-main: #9A3412;
+}
+
+@layer components {
+  .clay-card {
+    @apply bg-white rounded-2xl border-2 border-white/50 shadow-[8px_8px_16px_#f9731633,-8px_-8px_16px_#ffffff];
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .clay-card:hover {
+    @apply transform -translate-y-1 shadow-[12px_12px_20px_#f9731644,-8px_-8px_16px_#ffffff];
+  }
+
+  .clay-button {
+    @apply px-6 py-3 rounded-xl font-display font-bold text-white transition-all duration-200 cursor-pointer;
+    background: var(--color-primary);
+    box-shadow: inset 2px 2px 4px rgba(255, 255, 255, 0.4), 
+                inset -2px -2px 4px rgba(0, 0, 0, 0.1),
+                4px 4px 8px rgba(249, 115, 22, 0.3);
+  }
+
+  .clay-button:hover {
+    @apply transform scale-105;
+    background: var(--color-primary-light);
+    box-shadow: inset 2px 2px 4px rgba(255, 255, 255, 0.4), 
+                inset -2px -2px 4px rgba(0, 0, 0, 0.1),
+                6px 6px 12px rgba(249, 115, 22, 0.4);
+  }
+
+  .clay-button:active {
+    @apply transform scale-95;
+    box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.1),
+                inset -4px -4px 8px rgba(255, 255, 255, 0.2);
+  }
+}
+
+body {
+  @apply bg-[var(--color-background)] text-[var(--color-text-main)] font-body antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-display;
+}
