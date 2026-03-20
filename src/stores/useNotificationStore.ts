@@ -24,7 +24,7 @@ interface NotificationStore {
   unsubscribeFromNotifications: () => void
 }
 
-export const useNotificationStore = create<NotificationStore>((set, get) => ({
+export const useNotificationStore = create<NotificationStore>((set) => ({
   notifications: [],
   unreadCount: 0,
   isLoading: false,
@@ -107,12 +107,13 @@ export const useNotificationStore = create<NotificationStore>((set, get) => ({
 
   subscribeToNotifications: () => {
     if (!supabase) return
+    const client = supabase
     
     // Subscribe to new notifications for current user
     // Note: We need user ID for filter, but subscription filter limitations might require
     // subscribing to all and filtering in callback, OR using RLS-aware realtime (Postgres Changes)
     
-    const channel = supabase
+    client
       .channel('my-notifications')
       .on(
         'postgres_changes',
@@ -120,7 +121,7 @@ export const useNotificationStore = create<NotificationStore>((set, get) => ({
         (payload) => {
           // Verify if it belongs to current user (though RLS should handle visibility if enabled on realtime)
           // Ideally, we fetch user ID first.
-          supabase.auth.getUser().then(({ data: { user } }) => {
+          client.auth.getUser().then(({ data: { user } }) => {
             if (user && payload.new.user_id === user.id) {
               set(state => ({
                 notifications: [payload.new as Notification, ...state.notifications],

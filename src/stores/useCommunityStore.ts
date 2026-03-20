@@ -144,7 +144,7 @@ export const useCommunityStore = create<CommunityStore>((set, get) => ({
   subscribeToChat: () => {
     if (!supabase) return
     
-    const channel = supabase
+    supabase
       .channel('public-chat')
       .on(
         'postgres_changes',

@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Modal } from './Modal'
 import { ImageUpload } from './ImageUpload'
-import { supabase } from '../lib/supabase'
 import { usePetStore } from '../stores/usePetStore'
 
 interface AddPetModalProps {

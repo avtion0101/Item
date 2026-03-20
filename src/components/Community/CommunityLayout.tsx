@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react'
-import { MessageCircle, Users, Mail, Send, Image as ImageIcon } from 'lucide-react'
+import { MessageCircle, Users, Mail, Send } from 'lucide-react'
 import { useCommunityStore } from '../../stores/useCommunityStore'
 import { usePetStore } from '../../stores/usePetStore'
 import { ImageUpload } from '../ImageUpload'
-import { supabase } from '../../lib/supabase'
 
 export function CommunityLayout() {
   const { activeTab, setActiveTab } = useCommunityStore()
-  const { user } = usePetStore()
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
@@ -174,7 +172,6 @@ function ChatRoom() {
   const { chatMessages, fetchChatMessages, sendChatMessage, subscribeToChat, unsubscribeFromChat } = useCommunityStore()
   const { user } = usePetStore()
   const [input, setInput] = useState('')
-  const scrollRef = useState<HTMLDivElement | null>(null)[1] // Simple ref placeholder
 
   useEffect(() => {
     fetchChatMessages()

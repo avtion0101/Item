@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Modal } from './Modal'
-import { Heart, Coffee, Gift, QrCode, Check } from 'lucide-react'
+import { Heart, Gift, QrCode, Check } from 'lucide-react'
 import { QRCodeSVG } from 'qrcode.react'
 
 interface DonationModalProps {
